@@ -42,7 +42,7 @@ In the installation, the following values has been taken by default:
 
 Run the container once it has been built, using the following sentence:
 
-`docker run --name xfrepository --hostname <container_hostname> --detach -p 1818:1818 -e DB_TYPE=<db_type> -e DB_HOST=<db_ip> -e DB_PORT=<db_port> -e DB_USER=<db_user> -e DB_PASS=<db_pass> -e DB_NAME=<db_name> -e AIM_URL=<aim_url> -e AIM_TOKEN=<aim_token> docpath/xfrepository`
+`docker run --name xfrepository --hostname <container_hostname> --detach -p 1818:1818 -e DB_TYPE=<db_type> -e DB_HOST=<db_ip> -e DB_PORT=<db_port> -e DB_USER=<db_user> -e DB_PASS=<db_pass> -e DB_NAME=<db_name> -e AIM_URL=<aim_url> -e AIM_TOKEN=<aim_token> -e LOCAL_USER=<local_user> -e LOCAL_USER_PASS=<local_user_pass> docpath/xfrepository`
 
 Deployment of the service applying the default database connection data:
 
@@ -50,7 +50,7 @@ Deployment of the service applying the default database connection data:
 
 In case you want to deploy the service in session mode, use the following command:
 
-`docker run --name xfrepository --hostname <container_hostname> --detach -p 1818:1818 -e DB_TYPE=<db_type> -e DB_HOST=<db_ip> -e DB_PORT=<db_port> -e DB_USER=<db_user> -e DB_PASS=<db_pass> -e DB_NAME=<db_name> -e AIM_URL=<aim_url> -e AIM_TOKEN=<aim_token> -e TRANSACTION_ID=<session_transaction_id> -e LICENSE_ADDRESS=<license_address> -e LICENSE_PORT=<license_port> -e SHUTDOWN_SESSION=<session_shutdown_session> docpath/xfrepository`
+`docker run --name xfrepository --hostname <container_hostname> --detach -p 1818:1818 -e DB_TYPE=<db_type> -e DB_HOST=<db_ip> -e DB_PORT=<db_port> -e DB_USER=<db_user> -e DB_PASS=<db_pass> -e DB_NAME=<db_name> -e AIM_URL=<aim_url> -e AIM_TOKEN=<aim_token> -e TRANSACTION_ID=<session_transaction_id> -e LICENSE_ADDRESS=<license_address> -e LICENSE_PORT=<license_port> -e SHUTDOWN_SESSION=<session_shutdown_session> -e LOCAL_USER=<local_user> -e LOCAL_USER_PASS=<local_user_pass> docpath/xfrepository`
 
 The parameters used are:
 - `--name`: this parameter indicates the name of the container, in this case xfrepository.
@@ -70,6 +70,8 @@ The parameters used are:
 - `license_address`: Address of the license server. Mandatory field in case you want to apply a session license.
 - `license_port`: License server port. Mandatory field in case you want to apply a session license.
 - `session_shutdown_session`: Indicates whether the associated session within the license server should be shutdown after closing the application. Available values are TRUE or FALSE. Mandatory field in case you want to apply a session license.
+- `local_user`: Provide the name of the local user. By default, admin.
+- `local_user_pass`: Provide the password for the local user. By default, admin.
 
 
 **IMPORTANT!** The command `sleep 5` is added from `run.sh`. This is a delay necessary for the license server to launch before DocPath® XF Repository is deployed. If it is removed or if it indicates an insufficient time (in seconds), an error may occur with the product license.
